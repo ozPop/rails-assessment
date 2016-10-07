@@ -1,14 +1,13 @@
 class User
-
-  # as artist
-  has_many :products, foreign_key: :artist_id
-  has_many :auctions # ????
-  has_many :sales, class_name: "Sale", foreign_key: :artist_id
-  has_many :customers, through: :sales, source: ???? # NOT COMPLETE
   has_many :reviews, foreign_key: :buyer_id
 
+  # as artist
+  has_one :store
+  has_many :products, foreign_key: :artist_id
+  has_many :customers, through: :sales, :class_name: 'User' # ????
+  has_many :sales, class_name: "Sale", foreign_key: :artist_id # ????
+
   # as buyer
-  has_many :bids
   has_many :purchases, class_name: "Sale", foreign_key: :buyer_id
 
 end
