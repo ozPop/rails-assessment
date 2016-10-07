@@ -4,14 +4,14 @@ User
     t.boolean :seller       default: false
     # Devise generated fields
 
-Product
+Artwork
     t.string :title
     t.text :description
     t.decimal :price
     t.integer :category_id # art style?
     t.integer :artist_id
-    t.integer :store_id
-    t.string :state(default :available, flips to :sold)
+    t.boolean :available, default: true
+    t.integer :inventory
     Extras:
     # t.string :product_type # eg: sculpture, painting, photograph
 
@@ -20,16 +20,16 @@ Category
 
 Transaction (formerly Sale)
     ##### t.integer :artist_id
-    t.integer :product_id
+    t.integer :artwork_id
     t.integer :buyer_id
 
 Cart
     t.integer :user_id
-    t.string :status,   default: "empty" # Should we keep this?
+    t.string :status,   default: "not submitted"
 
 Cart_Items
     t.integer :cart_id
-    t.integer :product_id
+    t.integer :artwork_id
     t.integer :quantity,    default: 1
 
 EXTRAS:
