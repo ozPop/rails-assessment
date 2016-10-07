@@ -5,7 +5,7 @@ class User
 
   # as artist
   has_many :artworks, foreign_key: :artist_id
-  has_many :sales, class_name: 'Transaction', foreign_key: :artist_id
+  has_many :sales, class_name: 'Transaction', foreign_key: :artwork_id
   has_many :buyers, through: :transactions, source: 'User'
 
   # EXTRAS
