@@ -5,21 +5,35 @@ User
     # Devise generated fields
 
 Product
-    t.string :name
+    t.string :title
     t.text :description
     t.decimal :price
-    t.string :product_type # eg: sculpture, painting, photograph
-    t.string :category # art style?
+    t.integer :category_id # art style?
     t.integer :artist_id
 
-Sale
+    Extras:
+    # t.string :product_type # eg: sculpture, painting, photograph
+
+Category
+    t.string title
+
+Store
+    t.integer :user_id
+
+Transaction (formerly Sale)
     t.integer :artist_id
     t.integer :buyer_id
 
-Auction
-    title
-    description
-    artist_id
+Cart
+    t.integer :user_id
+    t.string :status,   default: "empty" # Should we keep this?
+
+Cart_Items
+    t.integer :cart_id
+    t.integer :product_id
+    t.integer :quantity,    default: 1
+
+EXTRAS:
 
 Review # of the product
     description
