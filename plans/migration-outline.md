@@ -10,18 +10,17 @@ Product
     t.decimal :price
     t.integer :category_id # art style?
     t.integer :artist_id
-
+    t.integer :store_id
+    t.string :state(default :available, flips to :sold)
     Extras:
     # t.string :product_type # eg: sculpture, painting, photograph
 
 Category
     t.string title
 
-Store
-    t.integer :user_id
-
 Transaction (formerly Sale)
-    t.integer :artist_id
+    ##### t.integer :artist_id
+    t.integer :product_id
     t.integer :buyer_id
 
 Cart
@@ -40,3 +39,6 @@ Review # of the product
     rating
     buyer_id
     product_id
+
+Store
+    t.integer :artist_id

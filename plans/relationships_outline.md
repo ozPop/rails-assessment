@@ -1,13 +1,12 @@
 class User
   has_many :transactions
   has_many :purchases, class_name: "Transaction", foreign_key: :buyer_id
-  belongs_to :current_cart, class_name: 'Cart'
+  belongs_to :current_cart, class_name: 'Cart', optional: true # ??
 
   # as artist
   has_many :products, foreign_key: :artist_id
   has_many :sales, class_name: "Transaction", foreign_key: :artist_id # ????
-
-  has_many :customers, through: :transactions, class_name: 'User' # ????
+  has_many :buyers, through: :transactions, source: 'User' # ????
 
   # EXTRAS
   # has_one :store # We don't actually need this inside of this model.
@@ -16,7 +15,7 @@ class User
 
 end
 
-class Product
+class Product (currently has only one category)
   belongs_to :artist, class_name: 'User' # fk :artist_id
   belongs_to :store # fk :store_id
 
@@ -26,15 +25,8 @@ class Category
   has_many :products
 end
 
-
-class Store
-  belongs_to :artist, class_name: "User" # ????
-  has_many :items, through:
-end
-
-
 class Transaction
-  belongs_to :artist, class_name: "User"
+  belongs_to :product
   belongs_to :buyer, class_name: "User"
 end
 
@@ -45,7 +37,7 @@ class Cart
 end
 
 class CartItem
-  belongs_to :product
+  belongs_to :product # (reference to product)
   belongs_to :cart
 end
 
@@ -64,4 +56,9 @@ class artist_review
   belongs_to :artist # fk artist_id
   belongs_to buyer, class_name: "User # fk buyer_id"
 
+end
+
+class Store
+  belongs_to :artist, class_name: "User" # ????
+  has_many :items, class_name: "Product"
 end
