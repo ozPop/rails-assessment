@@ -21,14 +21,6 @@ class Product
 
 end
 
-class Bid
-
-  belongs_to :product
-  belongs_to :buyer, class_name: "User" # fk :buyer_id
-
-
-end
-
 class Sale
 
   # Don’t actually need the foreign key in this case (since the default is association name + _id (from rails 2.0)
