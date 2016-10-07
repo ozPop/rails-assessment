@@ -22,7 +22,7 @@
  - [Deviant Art Homepage](http://shop.deviantart.com/)
     - [Deviant: Buy print page](http://malahicha.deviantart.com/art/Blue-village-206868340?purchase=print)
     - [User Page](http://malahicha.deviantart.com/)
-        - [Users Prints (for sale)](malahicha.deviantart.com/prints/)
+        - [Users Prints (for sale)](http://malahicha.deviantart.com/prints/)
         - [User Prints (empty)](http://shanku.deviantart.com/prints/)
  - [Flickr home page](https://www.flickr.com/)
     - [User Page](https://www.flickr.com/photos/carlos386/)
