@@ -1,15 +1,13 @@
 class User
-  has_many :transactions
   has_many :purchases, class_name: 'Transaction', foreign_key: :buyer_id
-  belongs_to :current_cart, class_name: 'Cart', optional: true
+  has_many :orders, through: :purchases, source: :order
+  belongs_to :current_order, class_name: 'Order', optional: true
 
   # as artist
   has_many :artworks, foreign_key: :artist_id
-  has_many :sales, class_name: 'Transaction', foreign_key: :artwork_id
-  has_many :buyers, through: :transactions, source: 'User'
-
-  # EXTRAS
-    has_many :reviews, foreign_key: :buyer_id
+  has_many :sales, class_name: 'Transaction', foreign_key: :seller_id
+  has_many :sold_orders, through: :sales, source: :order
+  has_many :buyers, through: :sales, foreign_key: :buyer_id
 
 end
 
@@ -23,19 +21,20 @@ class Category
 end
 
 class Transaction
+  belongs_to :order
+  belongs_to :buyer, class_name: 'User'
+  belongs_to :seller, class_name: 'User'
+end
+
+class Order
+  has_many :order_items
+  has_many :items, through: :order_items, source: :artwork
+  belongs_to :buyer, class_name: 'User'
+end
+
+class OrderItem
   belongs_to :artwork
-  belongs_to :buyer, class_name: "User"
-end
-
-class Cart
-  has_many :cart_items
-  has_many :artworks, through: :cart_items
-  belongs_to :user
-end
-
-class CartItem
-  belongs_to :artwork # (reference to artwork)
-  belongs_to :cart
+  belongs_to :order
 end
 
 
