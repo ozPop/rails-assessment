@@ -1,15 +1,13 @@
+seller = User.create(username: 'seller')
 
-user = User.create(username: 'a')
+buyer = User.create(username: 'buyer')
 
-user2 = User.create(username: 'buyer')
-
-cart = Cart.create(user_id: 1)
+> This cart needed to have the id of the buyer, not the seller
+cart = Cart.create(user_id: 2)
 
 category = Category.create(title: 'SomeTitle')
 
 artwork = Artwork.create(title: 'SomeTitle', description: 'some desc', price: 125.23, category_id: 1, artist_id: 1, inventory: 5)
-
-cartitem = CartItem.create(cart_id: 1, product_id: 1)
 
 cartitem = CartItem.create(cart_id: 1, artwork_id: 1)
 
