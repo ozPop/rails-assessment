@@ -18,10 +18,6 @@ Artwork
 Category
     t.string title
 
-Transaction (formerly Sale)
-    t.integer :artwork_id
-    t.integer :buyer_id
-
 Order
     t.integer :buyer_id
     t.string :status,   default: 'not submitted'
@@ -30,6 +26,10 @@ Order_Items
     t.integer :artwork_id
     t.integer :order_id
     t.integer :quantity,    default: 1
+
+Transaction (formerly Sale)
+    t.integer :order_id
+    t.integer :buyer_id
 
 EXTRAS:
 
