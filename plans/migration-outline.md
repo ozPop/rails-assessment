@@ -23,7 +23,7 @@ Transaction (formerly Sale)
     t.integer :buyer_id
 
 Order
-    t.integer :user_id
+    t.integer :buyer_id
     t.string :status,   default: 'not submitted'
 
 Order_Items

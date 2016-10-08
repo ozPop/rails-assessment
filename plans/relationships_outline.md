@@ -21,13 +21,13 @@ end
 
 class Transaction
   belongs_to :artwork
-  belongs_to :buyer, class_name: "User"
+  belongs_to :buyer, class_name: 'User'
 end
 
 class Order
   has_many :order_items
   has_many :items, through: :order_items, source: :artwork
-  belongs_to :user
+  belongs_to :buyer, class_name: 'User'
 end
 
 class OrderItem
