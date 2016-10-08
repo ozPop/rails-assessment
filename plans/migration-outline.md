@@ -24,7 +24,7 @@ Transaction (formerly Sale)
 
 Order
     t.integer :user_id
-    t.string :status,   default: "not submitted"
+    t.string :status,   default: 'not submitted'
 
 Order_Items
     t.integer :artwork_id
