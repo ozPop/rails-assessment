@@ -1,3 +1,10 @@
+User.destroy_all
+Cart.destroy_all
+Category.destroy_all
+Artwork.destroy_all
+CartItem.destroy_all
+Transaction.destroy_all
+
 seller = User.create(username: 'seller')
 
 buyer = User.create(username: 'buyer')
