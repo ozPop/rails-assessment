@@ -1,6 +1,6 @@
 User
     t.string :username
-    t.string  :current_cart_id
+    t.string  :current_order_id
     t.boolean :seller       default: false
     # Devise generated fields
 
@@ -22,13 +22,13 @@ Transaction (formerly Sale)
     t.integer :artwork_id
     t.integer :buyer_id
 
-Cart
+Order
     t.integer :user_id
     t.string :status,   default: "not submitted"
 
-Cart_Items
-    t.integer :cart_id
+Order_Items
     t.integer :artwork_id
+    t.integer :order_id
     t.integer :quantity,    default: 1
 
 EXTRAS:

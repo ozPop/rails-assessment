@@ -1,7 +1,7 @@
 class User
   has_many :transactions
   has_many :purchases, class_name: 'Transaction', foreign_key: :buyer_id
-  belongs_to :current_cart, class_name: 'Cart', optional: true
+  belongs_to :current_order, class_name: 'Order', optional: true
 
   # as artist
   has_many :artworks, foreign_key: :artist_id
@@ -24,15 +24,15 @@ class Transaction
   belongs_to :buyer, class_name: "User"
 end
 
-class Cart
-  has_many :cart_items
-  has_many :items, through: :cart_items, source: :artwork
+class Order
+  has_many :order_items
+  has_many :items, through: :order_items, source: :artwork
   belongs_to :user
 end
 
-class CartItem
+class OrderItem
   belongs_to :artwork
-  belongs_to :cart
+  belongs_to :order
 end
 
 
