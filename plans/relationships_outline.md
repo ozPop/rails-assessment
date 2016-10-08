@@ -6,10 +6,7 @@ class User
   # as artist
   has_many :artworks, foreign_key: :artist_id
   has_many :sales, class_name: 'Transaction', foreign_key: :artwork_id
-  has_many :buyers, through: :transactions, source: 'User'
-
-  # EXTRAS
-    has_many :reviews, foreign_key: :buyer_id
+  has_many :buyers, through: :sales, foreign_key: :buyer_id
 
 end
 
@@ -29,12 +26,12 @@ end
 
 class Cart
   has_many :cart_items
-  has_many :artworks, through: :cart_items
+  has_many :items, through: :cart_items, source: :artwork
   belongs_to :user
 end
 
 class CartItem
-  belongs_to :artwork # (reference to artwork)
+  belongs_to :artwork
   belongs_to :cart
 end
 

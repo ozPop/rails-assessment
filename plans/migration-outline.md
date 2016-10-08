@@ -19,7 +19,6 @@ Category
     t.string title
 
 Transaction (formerly Sale)
-    ##### t.integer :artist_id
     t.integer :artwork_id
     t.integer :buyer_id
 
