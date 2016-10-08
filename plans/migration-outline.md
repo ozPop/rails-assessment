@@ -30,6 +30,7 @@ Order_Items
 Transaction (formerly Sale)
     t.integer :order_id
     t.integer :buyer_id
+    t.integer :seller_id
 
 EXTRAS:
 
