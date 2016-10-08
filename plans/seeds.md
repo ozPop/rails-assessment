@@ -19,6 +19,4 @@ orderitem = OrderItem.create(order: order, artwork: artwork)
 
 buyer.update(current_order: order)
 
-transaction = Transaction.create(buyer: buyer, order: order)
-
-transaction = Transaction.create(artwork: artwork, buyer: buyer)
+transaction = Transaction.create(buyer: buyer, seller: seller, order: order)
