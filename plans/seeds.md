@@ -1,4 +1,5 @@
 User.destroy_all
+
 Artwork.destroy_all
 Category.destroy_all
 Order.destroy_all
