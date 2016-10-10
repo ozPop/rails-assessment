@@ -1,4 +1,4 @@
-<%= image_tag('http://content.wallpapers-room.com/resolutions/1440x900/A/Wallpapers-room_com___Ad_Infinitum_by_art-styles_1440x900.jpg', size: '400', class: 'img-responsive', alt: artwork.title) %>
+<%= image_tag(artwork.image.url, size: '400', class: 'img-responsive', alt: artwork.title) %>
 <strong>Title: </strong><%= artwork.title %> <br />
 <strong>Description: </strong><%= artwork.description %> <br />
 <strong>Price: </strong><%= number_to_currency(artwork.price) %> <br />
