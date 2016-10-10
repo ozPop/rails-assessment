@@ -47,3 +47,6 @@ bower.json
 .swp
 # Ignore application configuration
 /config/application.yml
+
+# ignore paperclip uploaded images for now
+/public/system

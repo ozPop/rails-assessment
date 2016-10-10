@@ -48,6 +48,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'figaro'
+  gem 'faker'
 end
 
 group :development do
