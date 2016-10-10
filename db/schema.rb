@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20161008171021) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "buyer_id"
     t.string   "status",     default: "not submitted"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 20161008171021) do
   create_table "transactions", force: :cascade do |t|
     t.integer  "artwork_id"
     t.integer  "buyer_id"
-    t.integer  "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

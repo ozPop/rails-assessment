@@ -19,7 +19,7 @@ artwork2 = Artwork.create(title: 'Another Title', description: 'some desc', pric
 
 artwork3 = Artwork.create(title: '333Another Title', description: 'some desc', price: 4.2339, category: category, artist: seller2, inventory: 5)
 
-order = Order.create(user: buyer)
+order = Order.create(buyer: buyer)
 
 orderitem = OrderItem.create(order: order, artwork: artwork)
 
