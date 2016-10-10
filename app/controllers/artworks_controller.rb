@@ -10,6 +10,13 @@ class ArtworksController < ApplicationController
   end
 
   def create
+    @artwork = Artwork.new(artwork_params)
+    # raise 'stop'.inspect
+    if @artwork.save
+      redirect_to artwork_path(@artwork), notice: 'Successfuly added artwork'
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -28,5 +35,9 @@ class ArtworksController < ApplicationController
 
   def set_artwork
     @artwork = Artwork.find_by(id: params[:id])
+  end
+
+  def artwork_params
+    params.require(:artwork).permit(:title, :description, :price, :category_id, :inventory, :image)
   end
 end
