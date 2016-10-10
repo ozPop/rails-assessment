@@ -8,12 +8,10 @@ Artwork
     t.string :title
     t.text :description
     t.decimal :price
-    t.integer :category_id # art style?
+    t.integer :category_id
     t.integer :artist_id
     t.boolean :available, default: true
     t.integer :inventory
-    Extras:
-    # t.string :product_type # eg: sculpture, painting, photograph
 
 Category
     t.string title
@@ -27,10 +25,9 @@ Order_Items
     t.integer :order_id
     t.integer :quantity,    default: 1
 
-Transaction (formerly Sale)
-    t.integer :order_id
+Transaction
+    t.integer :artwork_id
     t.integer :buyer_id
-    t.integer :seller_id
 
 EXTRAS:
 

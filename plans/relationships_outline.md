@@ -1,19 +1,20 @@
 class User
+  # as buyer
+  has_many :orders, foreign_key: :buyer_id
   has_many :purchases, class_name: 'Transaction', foreign_key: :buyer_id
-  has_many :orders, through: :purchases, source: :order
   belongs_to :current_order, class_name: 'Order', optional: true
 
   # as artist
   has_many :artworks, foreign_key: :artist_id
-  has_many :sales, class_name: 'Transaction', foreign_key: :seller_id
-  has_many :sold_orders, through: :sales, source: :order
-  has_many :buyers, through: :sales, foreign_key: :buyer_id
+  has_many :sales, through: :artworks, source: :transactions
+  has_many :buyers, through: :sales
 
 end
 
-class Artwork (currently has only one category)
-  belongs_to :artist, class_name: 'User' # fk :artist_id
+class Artwork
+  belongs_to :artist, class_name: 'User'
   belongs_to :category
+  has_many :transactions
 end
 
 class Category
@@ -21,14 +22,14 @@ class Category
 end
 
 class Transaction
-  belongs_to :order
+  belongs_to :artwork
   belongs_to :buyer, class_name: 'User'
-  belongs_to :seller, class_name: 'User'
 end
 
 class Order
   has_many :order_items
   has_many :items, through: :order_items, source: :artwork
+  has_many :transactions
   belongs_to :buyer, class_name: 'User'
 end
 
