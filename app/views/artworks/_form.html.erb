@@ -1,4 +1,15 @@
 <%= form_for(artwork, multipart: true) do |f| %>
+  <% if artwork.errors.any? %>
+    <div id="error_explanation" class="alert alert-warning" role="alert">
+      <h2><%= pluralize(artwork.errors.count, "error") %> prohibited this artwork from being saved:</h2>
+
+      <ul>
+      <% artwork.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control' %>
