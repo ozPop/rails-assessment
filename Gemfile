@@ -41,6 +41,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
+  gem 'figaro'
 end
 
 group :development do
