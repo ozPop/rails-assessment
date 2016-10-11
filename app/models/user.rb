@@ -22,4 +22,15 @@ class User < ApplicationRecord
     end
   end
 
+  def create_current_order
+    new_order = orders.create
+    self.current_order_id = new_order.id
+    save
+  end
+
+  def remove_order
+    self.current_order_id = nil
+    save
+  end
+
 end

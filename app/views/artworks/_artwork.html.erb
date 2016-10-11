@@ -4,3 +4,5 @@
 <strong>Price: </strong><%= number_to_currency(artwork.price) %> <br />
 <strong>Category: </strong><%= artwork.category.title %> <br />
 <strong>Artist: </strong><%= artwork.artist.email %> <br />
+
+<%= button_to 'Add to Cart', order_items_path(artwork_id: artwork), class: 'btn btn-primary' if user_signed_in? %>
