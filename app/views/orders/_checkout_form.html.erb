@@ -6,11 +6,19 @@
             <img src="<%= item.artwork.image %>">
           </div>
       </div>
-      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-        <div class="order-details">
-          <h4><%= item.artwork.title %></h3>
-          <p>Artist Name: <%= item.artwork.artist.email %></p>
-          <%= button_to 'Delete', order_path, class: 'btn btn-danger btn-xs', method: :delete %>
+      <div class="order-details">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h4><%= item.artwork.title %></h3>
+            <p>Artist Name: <%= item.artwork.artist.email %></p>
+            <%= button_to 'Delete', order_path, class: 'btn btn-danger btn-xs', method: :delete %>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <h5>Price </h5>
+          <p><%= number_to_currency(item.artwork.price) %></p>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 item-quantity">
+          <h5>Quantity </h5>
+          <p><%= item.quantity %></p>
         </div>
       </div>
     </div>
