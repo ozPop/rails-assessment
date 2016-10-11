@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   resources :users do
-    resources :artworks, only: [:show, :index]
+    resources :artworks, only: [:index, :show, :new, :edit]
   end
 
   resources :artworks
