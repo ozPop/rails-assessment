@@ -5,5 +5,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @artworks = @user.artworks
   end
 end
