@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :artworks
 
-  resources :orders, only: [:show]
+  resources :orders
 
   post '/order/:id/checkout', to: 'orders#checkout', as: 'checkout'
 

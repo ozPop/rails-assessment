@@ -5,6 +5,14 @@ class Order < ApplicationRecord
   belongs_to :buyer, class_name: 'User'
   accepts_nested_attributes_for :order_items
 
+  def order_items_attributes=(order_item_attributes)
+    order_item_attributes.values.each do |order_item_attribute|
+      order_item = OrderItem.find(order_item_attribute.values.first)
+      order_item.update(quantity: order_item_attribute.values.last)
+    end
+    # binding.pry
+  end
+
   def add_item(item_id)
     order_item = order_items.find_by(artwork_id: item_id)
     if order_item
