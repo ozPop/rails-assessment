@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
   def checkout
     @order.checkout
-    redirect_to root_path
+    redirect_to root_path, notice: "You've successfully checked out"
   end
 
   private
