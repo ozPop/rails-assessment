@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
-  resources :users
+  resources :users do
+    resources :artworks, only: [:show, :index]
+  end
 
   resources :artworks
 

@@ -2,7 +2,16 @@ class ArtworksController < ApplicationController
   before_action :set_artwork, only: [:show, :edit, :update, :destroy]
 
   def index
-    @artworks = Artwork.all
+    if params[:user_id]
+      artist = User.find_by(id: params[:user_id])
+      if artist.nil?
+        redirect_to users_path, alert: 'User not found'
+      else
+        @artworks = artist.artworks
+      end
+    else
+      @artworks = Artwork.all
+    end
   end
 
   def new
