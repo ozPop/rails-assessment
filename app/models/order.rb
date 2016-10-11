@@ -30,6 +30,7 @@ class Order < ApplicationRecord
     self.status = 'submitted'
     buyer.remove_order
     update_inventory
+    create_transactions
   end
 
   def update_inventory
@@ -38,6 +39,12 @@ class Order < ApplicationRecord
         order_item.artwork.inventory -= order_item.quantity
         order_item.artwork.save
       end
+    end
+  end
+
+  def create_transactions
+    self.items.each do |artwork|
+      Transaction.create(artwork: artwork, buyer: buyer)
     end
   end
 
