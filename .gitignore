@@ -50,3 +50,5 @@ bower.json
 
 # ignore paperclip uploaded images for now
 /public/system
+
+.DS_Store
