@@ -10,8 +10,7 @@ class ArtworksController < ApplicationController
   end
 
   def create
-    @artwork = Artwork.new(artwork_params)
-    # raise 'stop'.inspect
+    @artwork = current_user.artworks.build(artwork_params)
     if @artwork.save
       redirect_to artwork_path(@artwork), notice: 'Successfuly added artwork'
     else
