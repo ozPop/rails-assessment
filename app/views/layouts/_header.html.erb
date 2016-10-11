@@ -1,0 +1,28 @@
+<div class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    <a class="navbar-brand" href="<%= root_path %>"/><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Store', artworks_path %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to 'Signed in as ' + current_user.email, user_path(current_user) %></li>
+          <li> <%= link_to "Sign out", destroy_user_session_path, method: :delete %> </li>
+        <% else %>
+          <li> <%= link_to "Sign In", new_user_session_path %> </li>
+          <li> <%= link_to "Sign Up", new_user_registration_path %> </li>
+        <% end %>
+        <% if current_user && current_user.current_order %>
+          <li> <%= link_to "Cart", order_path(current_user.current_order) %></li>
+        <% end %>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
