@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   has_many :items, through: :order_items, source: :artwork
   has_many :transactions
   belongs_to :buyer, class_name: 'User'
+  accepts_nested_attributes_for :order_items
 
   def add_item(item_id)
     order_item = order_items.find_by(artwork_id: item_id)
