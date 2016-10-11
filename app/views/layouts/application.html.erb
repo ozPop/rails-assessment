@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ModelsPractice</title>
+    <title>Art Store</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <!--  navbar -->
+    <nav>
+      <%= render 'layouts/header' %>
+    </nav>
 
     <!-- content -->
-    <div class="container"  role="main">
+    <div class="container-fluid"  role="main">
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
