@@ -14,6 +14,10 @@ class Order < ApplicationRecord
     order_item
   end
 
+  def remove_item(item_id)
+    items.delete(Artwork.find(item_id))
+  end
+
   def total
     total = 0
     order_items.each do |order_item|

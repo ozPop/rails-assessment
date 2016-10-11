@@ -1,24 +1,24 @@
 <div class="order-item-wrap">
-<% order.order_items.each do |item| %>
+<% order.order_items.each do |order_item| %>
     <div class="row">
       <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
           <div class="thumbnail image">
-            <img src="<%= item.artwork.image %>">
+            <img src="<%= order_item.artwork.image %>">
           </div>
       </div>
       <div class="order-details">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <h4><%= item.artwork.title %></h3>
-            <p>Artist Name: <%= item.artwork.artist.email %></p>
-            <%= button_to 'Delete', order_path, class: 'btn btn-danger btn-xs', method: :delete %>
+            <h4><%= order_item.artwork.title %></h3>
+            <p>Artist Name: <%= order_item.artwork.artist.email %></p>
+            <%= button_to 'Delete', order_items_path, params: {artwork_id: order_item.artwork.id}, class: 'btn btn-danger btn-xs', method: :delete %>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
           <h5>Price </h5>
-          <p><%= number_to_currency(item.artwork.price) %></p>
+          <p><%= number_to_currency(order_item.artwork.price) %></p>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 item-quantity">
           <h5>Quantity </h5>
-          <p><%= item.quantity %></p>
+          <p><%= order_item.quantity %></p>
         </div>
       </div>
     </div>

@@ -10,13 +10,14 @@ Rails.application.routes.draw do
 
   resources :artworks
 
-  resources :order_items, only: [:create]
-
-  resources :orders
+  resources :orders, only: [:show]
 
   post '/order/:id/checkout', to: 'orders#checkout', as: 'checkout'
 
-  #delete '/order_items/:id', to: 'orders#checkout'
+  resources :order_items, only: [:create]
+
+  delete '/order_items', to: 'order_items#destroy'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
