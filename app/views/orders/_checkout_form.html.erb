@@ -10,11 +10,11 @@
         <div class="order-details">
           <h4><%= item.artwork.title %></h3>
           <p>Artist Name: <%= item.artwork.artist.email %></p>
-          <%= button_to 'Delete', order_path, class: 'btn btn-danger btn-xs' %>
+          <%= button_to 'Delete', order_path, class: 'btn btn-danger btn-xs', method: :delete %>
         </div>
       </div>
     </div>
 <% end %>
   <h3>Order Total: <%= number_to_currency(@order.total) %></h3>
-  <%= button_to 'Checkout', order_path, class: 'btn btn-primary' %>
+  <%= button_to 'Checkout', checkout_path, class: 'btn btn-primary' %>
 </div>

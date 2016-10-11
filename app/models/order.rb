@@ -24,6 +24,7 @@ class Order < ApplicationRecord
 
   def checkout
     self.status = 'submitted'
+    buyer.remove_order
     update_inventory
   end
 
