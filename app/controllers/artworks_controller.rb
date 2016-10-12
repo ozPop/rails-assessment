@@ -32,10 +32,11 @@ class ArtworksController < ApplicationController
 
   def show
     if params[:user_id]
-      @artist = User.find_by(id: params[:user_id])
-      @artwork = @artist.artworks.find_by(id: params[:id])
+      return redirect_to users_path, alert: "Artist not found." unless get_artist
+      artist = get_artist
+      @artwork = artist.artworks.find_by(id: params[:id])
       if @artwork.nil?
-        redirect_to user_artworks_path(@artist), alert: "Artwork not found"
+        redirect_to user_artworks_path(artist), alert: "Artwork not found"
       end
     else
       @artwork = Artwork.find(params[:id])
@@ -77,6 +78,10 @@ class ArtworksController < ApplicationController
 
   def set_artwork
     @artwork = Artwork.find_by(id: params[:id])
+  end
+
+  def get_artist
+    @artist = User.find_by(id: params[:user_id])
   end
 
   def artwork_params
