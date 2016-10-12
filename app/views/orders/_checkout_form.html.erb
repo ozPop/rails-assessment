@@ -2,25 +2,25 @@
 <%= form_for order do |order_fields| %>
   <%= order_fields.fields_for :order_items do |item_fields| %>
   <div class="row">
-    <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+    <div class="col-xs-8 col-sm-3 col-md-2 col-lg-2">
         <div class="thumbnail image">
           <img src="<%= item_fields.object.artwork.image %>">
         </div>
     </div>
     <div class="order-details">
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-          <h4><%= item_fields.object.artwork.title %></h4>
+      <div class="col-xs-5 col-sm-6 col-md-6 col-lg-6">
+          <h5><%= item_fields.object.artwork.title %></h5>
           <p>Artist Name: <%= item_fields.object.artwork.artist.email %></p>
           
       </div>
-      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+      <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
         <h5>Price </h5>
         <p><%= number_to_currency(item_fields.object.artwork.price) %></p>
       </div>
-      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 item-quantity">
+      <div class="col-xs-4 col-sm-1 col-md-1 col-lg-1 item-quantity">
         <h5>Quantity </h5>
           <%= item_fields.number_field :quantity %>
-          <%= item_fields.submit url: order_path, class: 'btn btn-default btn-xs' %>
+          <%= item_fields.submit 'Update', url: order_path, class: 'btn btn-default btn-xs' %>
       </div>
     </div> <!-- /.order-details -->
   </div>
