@@ -12,9 +12,11 @@ class ArtworksController < ApplicationController
   end
 
   def new
+    return redirect_to new_user_registration_path unless user_signed_in?
     if params[:user_id] && !User.exists?(params[:user_id])
       redirect_to users_path, alert: "Artist not found."
     else
+      return redirect_to root_path, alert: 'Access denied' unless current_user.id == params[:user_id].to_i
       @artwork = Artwork.new(artist_id: params[:user_id])
     end
   end
