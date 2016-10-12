@@ -4,11 +4,8 @@ class ArtworksController < ApplicationController
   def index
     if params[:user_id]
       artist = User.find_by(id: params[:user_id])
-      if artist.nil?
-        redirect_to users_path, alert: 'User not found'
-      else
-        @artworks = artist.artworks
-      end
+      return redirect_to users_path, alert: 'User not found' if artist.nil?
+      @artworks = artist.artworks
     else
       @artworks = Artwork.most_popular
     end
