@@ -10,7 +10,7 @@ class ArtworksController < ApplicationController
         @artworks = artist.artworks
       end
     else
-      @artworks = Artwork.all
+      @artworks = Artwork.most_popular
     end
   end
 
