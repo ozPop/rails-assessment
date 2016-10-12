@@ -49,14 +49,15 @@ class ArtworksController < ApplicationController
       artist = User.find_by(id: params[:user_id])
       if artist.nil?
         redirect_to users_path, alert: "User not found."
-      else
+      elsif user_signed_in? && current_user.id == params[:user_id]
         @artwork = artist.artworks.find_by(id: params[:id])
         redirect_to user_artworks_path(artist), alert: "Artwork not found." if @artwork.nil?
+      else
+        redirect_to root_path, alert: "You don't have access to this page."
       end
     else
-      @artwork = Artwork..find(params[:id])
+      redirect_to root_path, alert: "You don't have access to this page."
     end
-
   end
 
   def update
