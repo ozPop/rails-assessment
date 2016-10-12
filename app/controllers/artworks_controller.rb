@@ -3,7 +3,7 @@ class ArtworksController < ApplicationController
 
   def index
     if params[:user_id]
-      artist = User.find_by(id: params[:user_id])
+      artist = get_artist 
       return redirect_to users_path, alert: 'User not found' if artist.nil?
       @artworks = artist.artworks
     else
@@ -17,6 +17,7 @@ class ArtworksController < ApplicationController
       redirect_to users_path, alert: "Artist not found."
     else
       return redirect_to root_path, alert: 'Access denied' unless current_user.id == params[:user_id].to_i
+      @artist = get_artist
       @artwork = Artwork.new(artist_id: params[:user_id])
     end
   end
@@ -32,8 +33,8 @@ class ArtworksController < ApplicationController
 
   def show
     if params[:user_id]
-      return redirect_to users_path, alert: "Artist not found." unless get_artist
       artist = get_artist
+      return redirect_to users_path, alert: "Artist not found." unless artist
       @artwork = artist.artworks.find_by(id: params[:id])
       if @artwork.nil?
         redirect_to user_artworks_path(artist), alert: "Artwork not found"
@@ -45,25 +46,24 @@ class ArtworksController < ApplicationController
 
   def edit
     if params[:user_id]
-      # @nested = true
-      artist = User.find_by(id: params[:user_id])
-      if artist.nil?
-        redirect_to users_path, alert: "User not found."
-      elsif user_signed_in? && current_user.id == params[:user_id]
+      artist = get_artist
+      return redirect_to users_path, alert: "User not found." if artist.nil?
+      if user_signed_in? && current_user.id == params[:user_id].to_i
+        @artist = artist
         @artwork = artist.artworks.find_by(id: params[:id])
-        redirect_to user_artworks_path(artist), alert: "Artwork not found." if @artwork.nil?
+        return redirect_to user_artworks_path, alert: 'Artwork not found.' unless @artwork
+        render :edit
+        # redirect_to user_artworks_path(artist), alert: "Artwork not found." if @artwork.nil?
       else
         redirect_to root_path, alert: "You don't have access to this page."
       end
-    else
-      redirect_to root_path, alert: "You don't have access to this page."
     end
   end
 
   def update
     @artwork.update(artwork_params)
     if @artwork.save
-      redirect_to @artwork, notice: 'Artwork updated.'
+      redirect_to user_artwork_path, notice: 'Artwork updated.'
     else
       render :edit
     end

@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   resources :users do
-    resources :artworks, only: [:index, :show, :new, :edit]
+    # We need all actions available for this nested resource
+    resources :artworks
   end
 
-  resources :artworks, only: :index
+  # This might need to allow for :index only
+  resources :artworks, only: [:index]
 
   resources :orders
 
