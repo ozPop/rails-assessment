@@ -6,6 +6,6 @@
   <%= artwork.category.title %> <br />
   <%= link_to artwork.artist.email, user_path(artwork.artist)%> <br />
 
-  <%= button_to 'Add to Cart', order_items_path(artwork_id: artwork), class: 'btn btn-primary' if user_signed_in? %>
+  <%= button_to 'Add to Cart', order_items_path(artwork_id: artwork), class: 'btn btn-primary' if user_signed_in? && artwork.artist != current_user %>
   <br />
 <% end %>
