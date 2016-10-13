@@ -76,7 +76,7 @@ end
 end
 
 # Create artworks for seller id 3
-1.times do
+2.times do
   Artwork.create(
     title: Faker::Book.title,
     description: Faker::Hipster.paragraph,
@@ -89,8 +89,14 @@ end
 end
 
 Transaction.create(artwork_id: 1, buyer_id: 6)
-Transaction.create(artwork_id: 3, buyer_id: 6)
+Transaction.create(artwork_id: 2, buyer_id: 6)
+Transaction.create(artwork_id: 2, buyer_id: 6)
 Transaction.create(artwork_id: 6, buyer_id: 6)
-Transaction.create(artwork_id: 4, buyer_id: 5)
-Transaction.create(artwork_id: 4, buyer_id: 5)
-Transaction.create(artwork_id: 4, buyer_id: 5)
+Transaction.create(artwork_id: 7, buyer_id: 6)
+Transaction.create(artwork_id: 1, buyer_id: 5)
+Transaction.create(artwork_id: 1, buyer_id: 5)
+Transaction.create(artwork_id: 2, buyer_id: 5)
+Transaction.create(artwork_id: 3, buyer_id: 4)
+Transaction.create(artwork_id: 1, buyer_id: 4)
+Transaction.create(artwork_id: 4, buyer_id: 4)
+Transaction.create(artwork_id: 4, buyer_id: 4)
