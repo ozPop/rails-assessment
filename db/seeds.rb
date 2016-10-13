@@ -9,7 +9,7 @@ require 'faker'
 User.destroy_all
 Category.destroy_all
 Artwork.destroy_all
-# Transaction.destroy_all
+Transaction.destroy_all
 
 # Create some sellers / buyers
 
@@ -55,7 +55,7 @@ end
     description: Faker::Hipster.paragraph,
     price: Faker::Number.between(3, 5),
     category_id: Faker::Number.between(1, 3),
-    inventory: 5,
+    inventory: 15,
     artist_id: 1,
     image: File.new(Dir.glob("#{Rails.root}/test/seed-images/*").sample)
   )
@@ -69,7 +69,7 @@ end
     description: Faker::Hipster.paragraph,
     price: Faker::Number.between(3, 5),
     category_id: Faker::Number.between(1, 3),
-    inventory: 5,
+    inventory: 15,
     artist_id: 2,
     image: File.new(Dir.glob("#{Rails.root}/test/seed-images/*").sample)
   )
@@ -82,8 +82,15 @@ end
     description: Faker::Hipster.paragraph,
     price: Faker::Number.between(3, 5),
     category_id: Faker::Number.between(1, 3),
-    inventory: 2,
+    inventory: 12,
     artist_id: 3,
     image: File.new(Dir.glob("#{Rails.root}/test/seed-images/*").sample)
   )
 end
+
+Transaction.create(artwork_id: 1, buyer_id: 6)
+Transaction.create(artwork_id: 3, buyer_id: 6)
+Transaction.create(artwork_id: 6, buyer_id: 6)
+Transaction.create(artwork_id: 4, buyer_id: 5)
+Transaction.create(artwork_id: 4, buyer_id: 5)
+Transaction.create(artwork_id: 4, buyer_id: 5)
