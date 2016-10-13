@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @artworks = Artwork.all.reverse
+    @artworks = Artwork.most_popular
   end
 end
