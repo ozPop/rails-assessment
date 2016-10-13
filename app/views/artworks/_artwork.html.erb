@@ -8,8 +8,10 @@
 
   <%= button_to 'Add to Cart', order_items_path(artwork_id: artwork), class: 'btn btn-primary' if user_signed_in? && artwork.artist != current_user %>
   <% if current_user && current_user.artworks.include?(artwork) %>
-    <%= button_to 'Edit', edit_user_artwork_path(current_user, artwork), method: :get %> 
-    <%= button_to 'Delete', user_artwork_path(current_user, artwork), method: :delete %>
+    <%= content_tag :div, class: 'listing-controls' do %>
+      <%= button_to 'Edit', edit_user_artwork_path(current_user, artwork), class: 'btn btn-default', method: :get %> 
+      <%= button_to 'Delete', user_artwork_path(current_user, artwork), class: 'btn btn-danger', method: :delete %>
+    <% end %>
   <% end %>
   <br />
 <% end %>
