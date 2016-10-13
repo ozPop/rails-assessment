@@ -7,7 +7,8 @@ class ArtworksController < ApplicationController
       return redirect_to users_path, alert: 'User not found' if artist.nil?
       @artworks = artist.artworks
     else
-      @artworks = Artwork.most_popular
+      # @artworks = Artwork.most_popular
+      @artworks = Artwork.all.reverse
     end
   end
 
