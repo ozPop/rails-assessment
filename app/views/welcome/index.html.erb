@@ -1,3 +1,7 @@
-<h1>Welcome to Artshope</h1>
+<%= content_tag :div, class: 'welcome-text' do %>
+  <%= content_tag :h1, class: 'text-center' do %>
+    Welcome to Artshope
+  <% end %>
+<% end %>
+  <%= render partial: 'carousel', locals: { artworks: @artworks } %>
 
-<%= render partial: 'carousel', locals: { artworks: @artworks } %>
