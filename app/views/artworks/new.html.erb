@@ -1,3 +1,6 @@
-<h1>Put Artwork For Sale</h1>
+<%= content_tag :div, class: 'container' do %>
+  <h1>Put Artwork For Sale</h1>
 
-<%= render partial: 'form', locals: { artwork: @artwork, artist: @artist } %>
+  <%= render partial: 'form', locals: { artwork: @artwork, artist: @artist } %>
+<% end %>
+
