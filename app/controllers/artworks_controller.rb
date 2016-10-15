@@ -26,6 +26,8 @@ class ArtworksController < ApplicationController
   def create
     @artwork = current_user.artworks.build(artwork_params)
     if @artwork.save
+      # toggle seller to true
+      current_user.update(seller: true) unless current_user.seller
       redirect_to user_artworks_path(current_user), notice: 'Successfuly added artwork'
     else
       render 'new'
@@ -72,7 +74,9 @@ class ArtworksController < ApplicationController
 
   def destroy
     @artwork.destroy
-    redirect_to artworks_path, notice: 'Artwork deleted.'
+    # toggle seller to false
+    current_user.update(seller: false) unless current_user.artworks.any?
+    redirect_to user_path(current_user), notice: 'Artwork deleted.'
   end
 
   private

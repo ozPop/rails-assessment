@@ -1,7 +1,15 @@
-<h1>All Users</h1>
-<hr />
+<%= content_tag :div, class: 'container' do %>
+  <h1>All Sellers</h1>
+  <hr />
 
-<ul>
-  <%= render @users %>
-</ul>
+  <ul>
+    <%= render @sellers unless @sellers.blank? %>
+  </ul>
 
+  <h1>All Users</h1>
+  <hr />
+
+  <ul>
+    <%= render @users unless @users.blank? %>
+  </ul>
+<% end %>

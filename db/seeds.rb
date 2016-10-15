@@ -15,15 +15,13 @@ Transaction.destroy_all
 
 User.create(
   email: 'a@a.com',
-  password: 'qwerty',
-  seller: true
+  password: 'qwerty'
 )
 
 2.times do
   User.create(
     email: Faker::Internet.email,
-    password: 'qwerty',
-    seller: true
+    password: 'qwerty'
   )
 end
 
@@ -50,42 +48,51 @@ end
 # Create artworks for seller id 1
 
 2.times do
+  user = User.find(1)
   Artwork.create(
     title: Faker::Book.title,
     description: Faker::Hipster.paragraph,
     price: Faker::Number.between(3, 5),
     category_id: Faker::Number.between(1, 3),
     inventory: 15,
-    artist_id: 1,
+    artist_id: user.id,
     image: File.new(Dir.glob("#{Rails.root}/test/seed-images/*").sample)
   )
+  break if user.seller
+  user.update(seller: true)
 end
 
 
 # Create artworks for seller id 2
 3.times do
+  user = User.find(2)
   Artwork.create(
     title: Faker::Book.title,
     description: Faker::Hipster.paragraph,
     price: Faker::Number.between(3, 5),
     category_id: Faker::Number.between(1, 3),
     inventory: 15,
-    artist_id: 2,
+    artist_id: user.id,
     image: File.new(Dir.glob("#{Rails.root}/test/seed-images/*").sample)
   )
+  break if user.seller
+  user.update(seller: true)
 end
 
 # Create artworks for seller id 3
 2.times do
+  user = User.find(3)
   Artwork.create(
     title: Faker::Book.title,
     description: Faker::Hipster.paragraph,
     price: Faker::Number.between(3, 5),
     category_id: Faker::Number.between(1, 3),
     inventory: 12,
-    artist_id: 3,
+    artist_id: user.id,
     image: File.new(Dir.glob("#{Rails.root}/test/seed-images/*").sample)
   )
+  break if user.seller
+  user.update(seller: true)
 end
 
 Transaction.create(artwork_id: 1, buyer_id: 6)
