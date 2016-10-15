@@ -1,17 +1,30 @@
-<%= content_tag :div, class: 'container' do %>
-  <%= image_tag(artwork.image.url, size: '400', class: 'img-responsive', alt: artwork.title) %>
-  <%= artwork.title %> <br />
-  <%= artwork.description %> <br />
-  <%= number_to_currency(artwork.price) %> <br />
-  <%= artwork.category.title %> <br />
-  <%= link_to artwork.artist.email, user_path(artwork.artist)%> <br />
-
-  <%= button_to 'Add to Cart', order_items_path(artwork_id: artwork), class: 'btn btn-primary' if user_signed_in? && artwork.artist != current_user %>
-  <% if current_user && current_user.artworks.include?(artwork) %>
-    <%= content_tag :div, class: 'listing-controls' do %>
-      <%= button_to 'Edit', edit_user_artwork_path(current_user, artwork), class: 'btn btn-default', method: :get %> 
-      <%= button_to 'Delete', user_artwork_path(current_user, artwork), class: 'btn btn-danger', method: :delete %>
-    <% end %>
+<%= content_tag :div, class: 'col-sm-6 col-md-4' do %>
+  <%= content_tag :div, class: 'thumbnail' do %>
+    <%= image_tag(artwork.image.url, class: 'img-responsive', alt: artwork.title) %>
+    <%= content_tag :div, class: 'caption' do %>
+      <%= content_tag :h3 do %>
+        <%= artwork.title %>
+      <% end %>
+      <%= content_tag :p do %>
+        <%= artwork.description %>
+      <% end %>
+      <%= content_tag :p do %>
+        <%= 'category: ' + artwork.category.title %>
+      <% end %>
+      <%= content_tag :p do %>
+        by: <%= link_to artwork.artist.email, user_path(artwork.artist)%>
+      <% end %>
+      <%= content_tag :p do %>
+        price: <%= number_to_currency(artwork.price) %>
+      <% end %>
+      <hr>
+      <%= button_to 'Add to Cart', order_items_path(artwork_id: artwork), class: 'btn btn-primary' if user_signed_in? && artwork.artist != current_user %>
+      <% if current_user && current_user.artworks.include?(artwork) %>
+        <%= content_tag :div, class: 'listing-controls' do %>
+          <%= button_to 'Edit', edit_user_artwork_path(current_user, artwork), class: 'btn btn-default', method: :get %> 
+          <%= button_to 'Delete', user_artwork_path(current_user, artwork), class: 'btn btn-danger', method: :delete %>
+        <% end %>
+      <% end %>
+    <% end %> <!-- /.caption -->
   <% end %>
-  <br />
 <% end %>

@@ -1,4 +1,7 @@
-<h1>All Art</h1>
-<hr />
-
-<%= render @artworks %>
+<%= content_tag :div, class: 'container-fluid' do %>
+  <h1>All Art</h1>
+  <hr />
+  <%= content_tag :div, class: 'row' do %>
+    <%= render @artworks %>
+  <% end %>
+<% end %>
