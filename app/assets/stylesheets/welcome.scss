@@ -1,3 +1,32 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.welcome-text {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.welcome-text h1 {
+  position: absolute;
+  color: white;
+  font-size: 18px;
+  z-index: 1;
+}
+
+#carousel-example-generic {
+  filter: brightness(50%);
+}
+
+@media screen and (min-width: 480px)  {
+  .welcome-text h1 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 768px)  {
+  .welcome-text h1 {
+    font-size: 65px;
+  }
+}
+
