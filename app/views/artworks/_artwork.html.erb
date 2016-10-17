@@ -1,6 +1,6 @@
 <%= content_tag :div, class: 'col-sm-6 col-md-4' do %>
   <%= content_tag :div, class: 'thumbnail' do %>
-    <%= image_tag(artwork.image.url, class: 'img-responsive', alt: artwork.title) %>
+    <%= link_to (image_tag(artwork.image.url, class: 'img-responsive', alt: artwork.title)), user_artwork_path(artwork.artist, artwork) %>
     <%= content_tag :div, class: 'caption' do %>
       <%= content_tag :h4 do %>
         <%= artwork.title %>
