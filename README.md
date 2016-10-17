@@ -1,24 +1,37 @@
-# README
+## Flatiron School Rails Assessment
+By: Fidel Severino & Ozzie Popovas
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### The overall concept:
 
-Things you may want to cover:
+A web based store where users can sell and buy artworks.
 
-* Ruby version
+* As a guest can browser all of the site
+* User can sign in or sign up
+* Browse listings
+* Create, edit, delete a listing
+* Has own profile
+* Cart functionality
+    * Can add items to cart
+    * Update item quantity
+    * Delete item in cart
+    * Checkout
 
-* System dependencies
+### At its current state the project is an MVP, meeting all the requirements of the assessment.
 
-* Configuration
+Requirements:
 
-* Database creation
+1. Use RoR
+2. Models must include the following  relationships
+    * has_many
+    * belongs_to
+    * has_many :through and a join table
+3. The join model must store user submittable attribute
+4. Include reasonable validations for the simple attributes
+5. At least one class level ActiveRecord scope method
+6. Nested form that writes to an associated model through a custom attribute writer.
+7. Provide a standard user authentication, including signup, login, logout, and passwords. Can use devise
+8. Implement Omniauth
+9. Make use of a nested resource with the appropriate RESTful URLs
+10. Your forms should correctly display validation errors
+11. Strive for a DRY rails app.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
