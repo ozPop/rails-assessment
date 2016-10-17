@@ -2,7 +2,7 @@
   <%= content_tag :div, class: 'thumbnail' do %>
     <%= image_tag(artwork.image.url, class: 'img-responsive', alt: artwork.title) %>
     <%= content_tag :div, class: 'caption' do %>
-      <%= content_tag :h3 do %>
+      <%= content_tag :h4 do %>
         <%= artwork.title %>
       <% end %>
       <%= content_tag :p do %>
