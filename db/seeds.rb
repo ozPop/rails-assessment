@@ -51,7 +51,7 @@ end
   user = User.find(1)
   Artwork.create(
     title: Faker::Beer.name,
-    description: Faker::Hipster.sentence(3),
+    description: Faker::Hipster.words(4).join(', '),
     price: Faker::Number.between(3, 5),
     category_id: Faker::Number.between(1, 3),
     inventory: 15,
@@ -68,7 +68,7 @@ end
   user = User.find(2)
   Artwork.create(
     title: Faker::Beer.name,
-    description: Faker::Hipster.sentence(3),
+    description: Faker::Hipster.words(4).join(', '),
     price: Faker::Number.between(3, 5),
     category_id: Faker::Number.between(1, 3),
     inventory: 15,
@@ -84,7 +84,7 @@ end
   user = User.find(3)
   Artwork.create(
     title: Faker::Beer.name,
-    description: Faker::Hipster.sentence(3),
+    description: Faker::Hipster.words(4).join(', '),
     price: Faker::Number.between(3, 5),
     category_id: Faker::Number.between(1, 3),
     inventory: 12,
