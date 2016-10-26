@@ -29,3 +29,13 @@ body .navbar {
     }
   }
 }
+
+footer {
+  text-align: center;
+  padding-top: 20px; 
+  .footer-part {
+    width: 120px;
+    margin: 0 auto;
+    border-bottom: 1px solid black; 
+  }
+}
