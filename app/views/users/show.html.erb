@@ -1,8 +1,16 @@
 <%= content_tag :div, class: 'container-fluid' do %>
-  <h1>Profile Page for: <%= @user.email %></h1>
-  <button id="my-sales">Sales</button>
-  <button id="my-purchases">Purchases</button>
+  <%= content_tag :h2 do %>
+    Profile of: <%= @user.email %>
+  <% end %>
+  <%= content_tag :div, class: 'all-artworks' do %>
+    <button id="my-sales">Sales</button>
+    <button id="my-purchases">Purchases</button>
+  <% end %>
 
-
-  <%= render partial: 'artworks/artwork', collection: @artworks, as: :artwork %>
+  <%= content_tag :div, class: 'all-artworks' do %>
+    <%= content_tag :h3 do %>
+      All art
+    <% end %>
+    <%= render partial: 'artworks/artwork', collection: @artworks, as: :artwork %>
+  <% end %>
 <% end %>
