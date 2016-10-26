@@ -1,5 +1,8 @@
 <%= content_tag :div, class: 'container-fluid' do %>
   <h1>Profile Page for: <%= @user.email %></h1>
+  <button id="my-sales">Sales</button>
+  <button id="my-purchases">Purchases</button>
+
 
   <%= render partial: 'artworks/artwork', collection: @artworks, as: :artwork %>
 <% end %>

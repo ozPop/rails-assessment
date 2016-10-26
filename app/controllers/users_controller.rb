@@ -7,6 +7,20 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     return redirect_to users_path unless @user
-    @artworks = @user.artworks
+    
+    respond_to do |format|
+    # handle based on type of request
+    format.html {
+      @artworks = @user.artworks
+    }
+    format.json { 
+      if params[:type] == 'sales'
+        artworks = @user.sales
+      else
+        artworks = @user.purchases
+      end
+      render json: artworks
+     }
+    end
   end
 end
