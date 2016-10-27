@@ -1,0 +1,46 @@
+<%= content_tag :div, class: 'tabs' do %>
+  <%= content_tag :ul, class: 'nav nav-tabs', id: 'myTabs', role: 'tablist' do %>
+    <%= content_tag :li, role: 'presentation', class: 'active' do %>
+      <%= content_tag :a, href: '#home', id: 'all-artworks', role: 'tab', 'data-toggle': 'tab', 'aria-controls': 'home', 'aria-expanded': 'true' do %>
+        All Artworks
+      <% end %>
+    <% end %>
+    <% if current_user == @user %>
+
+      <%= content_tag :li, role: 'presentation' do %>
+        <%= content_tag :a, href: '#sales', id: 'my-sales', role: 'tab', 'data-toggle': 'tab', 'aria-controls': 'sales', 'aria-expanded': 'false' do %>
+          Sales
+        <% end %>
+      <% end %>
+      <%= content_tag :li, role: 'presentation' do %>
+        <%= content_tag :a, href: '#purchases', id: 'my-purchases', role: 'tab', 'data-toggle': 'tab', 'aria-controls': 'purchases', 'aria-expanded': 'false' do %>
+          Purchases
+        <% end %>
+      <% end %>
+
+    
+    <% end %>
+  <% end %> <!-- /.nav nav-tabs -->
+  <%= content_tag :div, class: 'tab-content', id: 'myTabContent' do %>
+    <%= content_tag :div, class: 'tab-pane fade active in', role: 'tabpanel', id: 'home', 'aria-labelledby': 'home-tab' do %>
+      <%= content_tag :h3 do %>
+        All art
+      <% end %>
+      <%= render partial: 'artworks/artwork', collection: @artworks, as: :artwork %>
+    <% end %> <!-- /#home -->
+    <%= content_tag :div, class: 'tab-pane fade', role: 'tabpanel', id: 'sales', 'aria-labelledby': 'sales-tab' do %>
+      <%= content_tag :h3 do %>
+        Sales
+      <% end %>
+      <%= content_tag :div, id: 'art-sales' do %>
+      <% end %>
+    <% end %> <!-- /#sales -->
+    <%= content_tag :div, class: 'tab-pane fade', role: 'tabpanel', id: 'purchases', 'aria-labelledby': 'purchases-tab' do %>
+      <%= content_tag :h3 do %>
+        Purchases
+      <% end %>
+      <%= content_tag :div, id: 'art-purchases' do %>
+      <% end %>
+    <% end %> <!-- /#purchases -->
+  <% end %> <!-- /.tab-content -->
+<% end %> <!-- /.tabs -->
