@@ -7,6 +7,9 @@
     <button id="my-purchases">Purchases</button>
   <% end %>
 
+  <%= content_tag :div, id: 'art-sales' do %>
+  <% end %>
+
   <%= content_tag :div, class: 'all-artworks' do %>
     <%= content_tag :h3 do %>
       All art
@@ -14,3 +17,16 @@
     <%= render partial: 'artworks/artwork', collection: @artworks, as: :artwork %>
   <% end %>
 <% end %>
+
+<script id="artworks" type="text/x-handlebars-template">
+  <div class="col-sm-6 col-md-4">
+  {{#each this}}
+      <div class="thumbnail">
+        <a href="#"><img src="/system/images/{{image_file_name}}" class="img-responsive" alt="{{title}}"></a>
+        <div class="caption">
+          <h4>{{title}}</h4>
+        </div>
+      </div>
+  {{/each}}
+  </div>
+</script>
