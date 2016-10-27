@@ -3,7 +3,8 @@ class Artwork < ApplicationRecord
   belongs_to :artist, class_name: 'User'
   belongs_to :category
   has_many :transactions
-  has_attached_file :image
+  has_attached_file :image,
+                    url: "/system/images/:filename"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   scope :most_popular, -> {
