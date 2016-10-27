@@ -15,11 +15,11 @@ class UsersController < ApplicationController
     }
     format.json { 
       if params[:type] == 'sales'
-        artworks = @user.sales
+        @artworks = @user.sales.map(&:artwork)
       else
-        artworks = @user.purchases
+        @artworks = @user.purchases.map(&:artwork)
       end
-      render json: artworks
+      render json: @artworks
      }
     end
   end

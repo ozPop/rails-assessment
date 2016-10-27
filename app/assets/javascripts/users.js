@@ -7,7 +7,7 @@ $(document).on("turbolinks:load",function(){
       data: { type: 'sales' },
       dataType: 'json',
       success: function(response){ 
-        console.log('sales', response);
+        displaySales(response);
       }
     });
   });
@@ -18,11 +18,24 @@ $(document).on("turbolinks:load",function(){
       data: { type: 'purchases' },
       dataType: 'json',
       success: function(response){ 
-        console.log('purchases', response);
+        displayPurchases(response);
       }
     });
   });
 });
 
-// Take the objects returned and format it to HTML and append to page
-// have empty div to receive the payload 
+function formatResponse(response) {
+  let template = $('#artworks').html();
+  let templateScript = Handlebars.compile(template);
+  return templateScript(response);
+}
+
+function displaySales(response) {
+  let html = formatResponse(response);
+  $('#art-sales').html(html);
+}
+
+function displayPurchases(response) {
+  let html = formatResponse(response);
+  $('#art-sales').html(html);
+}
