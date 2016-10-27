@@ -50,8 +50,8 @@
 <% end %> <!-- ./container-fluid -->
 
 <script id="artworks" type="text/x-handlebars-template">
-  <div class="col-sm-6 col-md-4">
   {{#each this}}
+    <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <a href="#"><img src="/system/images/{{image_file_name}}" class="img-responsive" alt="{{title}}"></a>
         <div class="caption">
@@ -60,6 +60,6 @@
           <p>price: {{price}}</p>
         </div>
       </div>
+    </div>
   {{/each}}
-  </div>
 </script>

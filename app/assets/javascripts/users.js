@@ -1,6 +1,6 @@
 $(document).on("turbolinks:load",function(){
-  $('#my-sales').on('click', function(){
-
+  $('#my-sales').on('click', function(e){
+    e.preventDefault();
     $.ajax({
       url: window.location.href,
       type: 'get',
@@ -37,5 +37,6 @@ function displaySales(response) {
 
 function displayPurchases(response) {
   let html = formatResponse(response);
-  $('#art-sales').html(html);
+  $('#art-purchases').html(html);
 }
+
