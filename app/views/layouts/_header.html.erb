@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
             <% if current_user && current_user.current_order %>
-              <li><%= link_to '', order_path(current_user.current_order), class: "glyphicon glyphicon-shopping-cart " "aria-hidden=true"%></li>
+              <li><%= link_to (tag :span, class: "glyphicon glyphicon-shopping-cart " "aria-hidden=true"), order_path(current_user.current_order) %></li>
             <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
