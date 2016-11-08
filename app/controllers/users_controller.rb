@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       else
         @artworks = @user.purchases.map(&:artwork)
       end
-      render json: @artworks
+      render json: @user, adapter: :json
      }
     end
   end
