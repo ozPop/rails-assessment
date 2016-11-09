@@ -8,24 +8,6 @@ $(document).on('turbolinks:load', function() {
   attachListeners();
 });
 
-
-class Artwork {
-  constructor({id, title, description, price, image_file_name}) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.price = price;
-    this.image_file_name = image_file_name;
-  }
-
-  // formatter instance method
-  // this might me useful on the artwork/show
-  renderHTML() {
-    console.log('this would be html or handlebars...');
-    // code here...
-  }
-}
-
 function attachListeners(){
   $('#my-sales').on('click', function(e){
     e.preventDefault();
@@ -52,7 +34,7 @@ function getArtworks() {
     url: '/users/' + userId,
     type: 'get',
     dataType: 'json',
-    success: function(response){ 
+    success: function(response){
       // displaySales(response);
       console.log(response);
     }
@@ -66,9 +48,7 @@ function getSales() {
     url: '/users/' + userId + '/sales',
     type: 'get',
     dataType: 'json',
-    success: function(response){ 
-      // here we would need to have a function to iterate over the response and turn each artwork
-      // into a JS object
+    success: function(response){
       let artworks = [];
       if (response.artworks) {
         artworks = createArtworks(response.artworks);
@@ -85,7 +65,7 @@ function getPurchases() {
     url: '/users/' + userId + '/purchases',
     type: 'get',
     dataType: 'json',
-    success: function(response){ 
+    success: function(response){
       let artworks = [];
       if (response.artworks) {
         artworks = createArtworks(response.artworks);
