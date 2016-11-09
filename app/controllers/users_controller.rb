@@ -11,16 +11,22 @@ class UsersController < ApplicationController
     respond_to do |format|
     # handle based on type of request
     format.html {
-      @artworks = @user.artworks
+      # implicit rendering
     }
     format.json { 
-      if params[:type] == 'sales'
-        @artworks = @user.sales.map(&:artwork)
-      else
-        @artworks = @user.purchases.map(&:artwork)
-      end
+      # render user, along with sales and purchases
       render json: @user, adapter: :json
      }
     end
+  end
+
+  def sales
+    artist = User.find_by(id: params[:id])
+    render json: artist.sales.map(&:artwork), adapter: :json
+  end
+
+  def purchases
+    artist = User.find_by(id: params[:id])
+    render json: artist.purchases.map(&:artwork), adapter: :json
   end
 end

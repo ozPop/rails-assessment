@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :artworks
   end
 
+  # routes for json
+  get '/users/:id/sales', to: 'users#sales'
+  get '/users/:id/purchases', to: 'users#purchases'
+
   # This might need to allow for :index only
   resources :artworks, only: [:index]
 
