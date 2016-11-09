@@ -1,16 +1,60 @@
-$(document).on("turbolinks:load",function(){
-  $('#my-sales').on('click', function(e){
-    e.preventDefault();
+$(document).on('turbolinks:load', function() {
+  if($('.users.show').length !== 0) {
+    // alert('All artworks');
+    getArtworks();
+  }
+  getSales();
+
+  function getArtworksOnClick() {
+    $('#all-artworks').on('click', function(e){
+      e.preventDefault();
+      getArtworks();
+    });
+  }
+
+  function getArtworks() {
+    let userId = $('h2').attr('id');
     $.ajax({
-      url: window.location.href,
+      url: '/users/' + userId,
       type: 'get',
-      data: { type: 'sales' },
+      // data: { type: 'sales' },
       dataType: 'json',
       success: function(response){ 
-        displaySales(response);
+        // displaySales(response);
       }
     });
-  });
+  }
+
+  function getSales() {
+    $('#my-sales').on('click', function(e){
+      e.preventDefault();
+      let userId = $('h2').attr('id');
+      $.ajax({
+        url: '/users/' + userId + '/sales',
+        type: 'get',
+        // data: { type: 'sales' },
+        dataType: 'json',
+        success: function(response){ 
+          // here we would need to have a function to iterate over the response and turn each artwork
+          // into a JS object
+          displaySales(response);
+        }
+      });
+    });
+  }
+
+  // $('#my-sales').on('click', function(e){
+  //   e.preventDefault();
+  //   $.ajax({
+  //     url: window.location.href,
+  //     type: 'get',
+  //     data: { type: 'sales' },
+  //     dataType: 'json',
+  //     success: function(response){ 
+  //       displaySales(response);
+  //     }
+  //   });
+  // });
   $('#my-purchases').on('click', function(){
     $.ajax({
       url: window.location.href,
@@ -39,4 +83,3 @@ function displayPurchases(response) {
   let html = formatResponse(response);
   $('#art-purchases').html(html);
 }
-
