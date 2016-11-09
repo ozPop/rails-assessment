@@ -1,5 +1,5 @@
 <%= content_tag :div, class: 'container-fluid' do %>
-  <%= content_tag :h2 do %>
+  <%= content_tag :h2, id: "#{@user.id}" do %>
     Profile of: <%= @user.email %>
   <% end %>
 
@@ -8,7 +8,7 @@
 <% end %> <!-- ./container-fluid -->
 
 <script id="artworks" type="text/x-handlebars-template">
-  {{#each this}}
+  {{#artworks}}
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <a href="#"><img src="/system/images/{{image_file_name}}" class="img-responsive" alt="{{title}}"></a>
@@ -19,5 +19,5 @@
         </div>
       </div>
     </div>
-  {{/each}}
+  {{/artworks}}
 </script>
