@@ -1,8 +1,7 @@
 $(document).on('turbolinks:load', function() {
-  let userId = $('h2').attr('id');
-
+  // page detection using class name of body
   if($('.users.show').length !== 0) {
-    getArtworks();
+    getUser();
   }
   // attach event listener to #my-sales and #my-purchases
   attachListeners();
@@ -25,8 +24,47 @@ function attachListeners(){
   });
 }
 
+class User {
+  constructor(userObject) {
+    this.id = userObject.id;
+    this.email = userObject.email;
+    this.seller = userObject.seller;
+    this.artworks = userObject.artworks;
+  }
+}
+
+// return an array of JS objects
+function createArtworks(artworks){
+  if (artworks.length !== 0) {
+    return artworks.map(artwork => new Artwork(artwork));
+  } else {
+    return [];
+  }
+}
+
+// AJAX CALLS
+
+function getUser() {
+  let userId = $('.main-container').attr('id');
+
+  $.ajax({
+    url: '/users/' + userId,
+    type: 'get',
+    dataType: 'json',
+    success: function(response){
+      let user = new User(response.user);
+      let artworks = [];
+      if (user.artworks) {
+        artworks = createArtworks(user.artworks);
+      }
+      displayUserInfo(user);
+      displayArtworks(user.artworks);
+    }
+  });
+}
+
 function getArtworks() {
-  let userId = $('h2').attr('id');
+  let userId = $('.main-container').attr('id');
 
   $.ajax({
     url: '/users/' + userId,
@@ -43,7 +81,7 @@ function getArtworks() {
 }
 
 function getSales() {
-  let userId = $('h2').attr('id');
+  let userId = $('.main-container').attr('id');
 
   $.ajax({
     url: '/users/' + userId + '/sales',
@@ -60,7 +98,7 @@ function getSales() {
 }
 
 function getPurchases() {
-  let userId = $('h2').attr('id');
+  let userId = $('.main-container').attr('id');
 
   $.ajax({
     url: '/users/' + userId + '/purchases',
@@ -74,6 +112,12 @@ function getPurchases() {
       displayPurchases(artworks);
     }
   });
+}
+
+// DISPLAYING OF THINGS
+
+function displayUserInfo(user) {
+  $('.tabs').prepend($('<h2>Profile of: '+ user.email +'</h2>'));
 }
 
 function formatResponse(response) {
@@ -95,13 +139,4 @@ function displaySales(artworks) {
 function displayPurchases(artworks) {
   let html = formatResponse(artworks);
   $('#art-purchases').html(html);
-}
-
-// return an array of JS objects
-function createArtworks(artworks){
-  if (artworks.length !== 0) {
-    return artworks.map(artwork => new Artwork(artwork));
-  } else {
-    return [];
-  }
 }
