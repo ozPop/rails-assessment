@@ -41,9 +41,19 @@ class ArtworksController < ApplicationController
       @artwork = artist.artworks.find_by(id: params[:id])
       if @artwork.nil?
         redirect_to user_artworks_path(artist), alert: "Artwork not found"
+      else
+        respond_to do |format|
+          format.html {
+            # implicit rendering
+          }
+          format.json { 
+            render json: @artwork, adapter: :json
+          }
+        end
       end
-    else
-      @artwork = Artwork.find(params[:id])
+    # NOTE: probably don't need this else since we are always accessing through nested route
+    # else
+    #   @artwork = Artwork.find(params[:id])
     end
   end
 
