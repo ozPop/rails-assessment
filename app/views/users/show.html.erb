@@ -1,7 +1,4 @@
-<%= content_tag :div, class: 'container-fluid main-container' do %>
-  <%= content_tag :h2, id: "#{@user.id}" do %>
-    Profile of: <%= @user.email %>
-  <% end %>
+<%= content_tag :div, id: "#{@user.id}", class: 'container-fluid main-container' do %>
 
   <%= render 'display-tabs' %>
 
