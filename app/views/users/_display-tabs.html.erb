@@ -26,7 +26,8 @@
       <%= content_tag :h3 do %>
         All art
       <% end %>
-      <%= render partial: 'artworks/artwork', collection: @artworks, as: :artwork %>
+      <%= content_tag :div, id: 'all-art' do %>
+      <% end %>
     <% end %> <!-- /#home -->
     <%= content_tag :div, class: 'tab-pane fade', role: 'tabpanel', id: 'sales', 'aria-labelledby': 'sales-tab' do %>
       <%= content_tag :h3 do %>

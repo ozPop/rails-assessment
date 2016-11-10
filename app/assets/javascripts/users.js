@@ -9,6 +9,11 @@ $(document).on('turbolinks:load', function() {
 });
 
 function attachListeners(){
+  $('#all-artworks').on('click', function(e){
+    e.preventDefault();
+    getArtworks();
+  });
+
   $('#my-sales').on('click', function(e){
     e.preventDefault();
     getSales();
@@ -20,13 +25,6 @@ function attachListeners(){
   });
 }
 
-function getArtworksOnClick() {
-  $('#all-artworks').on('click', function(e){
-    e.preventDefault();
-    getArtworks();
-  });
-}
-
 function getArtworks() {
   let userId = $('h2').attr('id');
 
@@ -35,8 +33,11 @@ function getArtworks() {
     type: 'get',
     dataType: 'json',
     success: function(response){
-      // displaySales(response);
-      console.log(response);
+      let artworks = [];
+      if (response.user.artworks) {
+        artworks = createArtworks(response.user.artworks);
+      }
+      displayArtworks(artworks);
     }
   });
 }
@@ -79,6 +80,11 @@ function formatResponse(response) {
   let template = $('#artworks').html();
   let templateScript = Handlebars.compile(template);
   return templateScript(response);
+}
+
+function displayArtworks(artworks) {
+  let html = formatResponse(artworks);
+  $('#all-art').html(html);
 }
 
 function displaySales(artworks) {
