@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function() {
 function attachListeners(){
   $('#all-artworks').on('click', function(e){
     e.preventDefault();
-    getArtworks();
+    getUser();
   });
 
   $('#my-sales').on('click', function(e){
@@ -59,28 +59,6 @@ function getUser() {
         artworks = createArtworks(user.artworks);
       }
       displayUserInfo(user);
-      if (user.owner) {
-        displayOwnerArtworks(user.artworks);
-      } else {
-        displayPublicArtworks(user.artworks);
-      }
-    }
-  });
-}
-
-function getArtworks() {
-  let userId = $('.main-container').attr('id');
-
-  $.ajax({
-    url: '/users/' + userId,
-    type: 'get',
-    dataType: 'json',
-    success: function(response){
-      let user = new User(response.user);
-      let artworks = [];
-      if (user.artworks) {
-        artworks = createArtworks(user.artworks);
-      }
       if (user.owner) {
         displayOwnerArtworks(user.artworks);
       } else {
@@ -146,7 +124,7 @@ function formatCommerceResponse(response) {
 // DISPLAYING OF THINGS
 
 function displayUserInfo(user) {
-  $('.tabs').prepend($('<h2>Profile of: '+ user.email +'</h2>'));
+  $('.owner-info').html("<h2>Profile of: " + user.email + "</h2>");
 }
 
 function displayPublicArtworks(artworks) {
