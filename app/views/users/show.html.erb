@@ -4,7 +4,41 @@
 
 <% end %> <!-- ./container-fluid -->
 
-<script id="artworks" type="text/x-handlebars-template">
+<script id="public-artworks-template" type="text/x-handlebars-template">
+  {{#each this}}
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+  <a href="/users/{{artist.id}}/artworks/{{id}}"><img src="/system/images/{{image_file_name}}" class="img-responsive" alt="{{title}}"></a>
+        <div class="caption">
+          <h4>{{title}}</h4>
+          <p>{{description}}</p>
+          <p>price: {{price}}</p>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</script>
+
+<script id="owner-artworks-template" type="text/x-handlebars-template">
+  {{#each this}}
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+  <a href="/users/{{artist.id}}/artworks/{{id}}"><img src="/system/images/{{image_file_name}}" class="img-responsive" alt="{{title}}"></a>
+        <div class="caption">
+          <h4>{{title}}</h4>
+          <p>{{description}}</p>
+          <p>price: {{price}}</p>
+        </div>
+        <div class="listing-controls">
+          <button class="btn btn-default">Edit</button>
+          <button class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</script>
+
+<script id="commerce-template" type="text/x-handlebars-template">
   {{#each this}}
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
