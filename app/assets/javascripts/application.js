@@ -19,10 +19,11 @@
 
 // Add site-wide listener for clicks on thumbnails
 $(document).on('turbolinks:load', function() {
-  $('body').on('click', '.thumbnail a', function(e){
+  $('body').on('click', '.thumbnail', function(e){
     e.preventDefault();
     console.log('thumbnail was clicked!');
-    let url = $(this).attr('href');
+    // consider refactoring the selector
+    let url = $($(this).children()[0]).attr('href');
     getArtwork(url);
   });
 });
