@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     return redirect_to users_path unless @user
-    
+    # flag user as owner for displaying of artwork-controls
+    @user.owner = true if @user == current_user
     respond_to do |format|
     # handle based on type of request
     format.html {

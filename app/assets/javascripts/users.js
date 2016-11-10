@@ -29,6 +29,7 @@ class User {
     this.id = userObject.id;
     this.email = userObject.email;
     this.seller = userObject.seller;
+    this.owner = userObject.owner;
     this.artworks = userObject.artworks;
   }
 }
@@ -58,7 +59,11 @@ function getUser() {
         artworks = createArtworks(user.artworks);
       }
       displayUserInfo(user);
-      displayArtworks(user.artworks);
+      if (user.owner) {
+        displayOwnerArtworks(user.artworks);
+      } else {
+        displayPublicArtworks(user.artworks);
+      }
     }
   });
 }
@@ -71,11 +76,16 @@ function getArtworks() {
     type: 'get',
     dataType: 'json',
     success: function(response){
+      let user = new User(response.user);
       let artworks = [];
-      if (response.user.artworks) {
-        artworks = createArtworks(response.user.artworks);
+      if (user.artworks) {
+        artworks = createArtworks(user.artworks);
       }
-      displayArtworks(artworks);
+      if (user.owner) {
+        displayOwnerArtworks(user.artworks);
+      } else {
+        displayPublicArtworks(user.artworks);
+      }
     }
   });
 }
@@ -114,29 +124,47 @@ function getPurchases() {
   });
 }
 
+// HANDLEBARS TEMPLATE COMPILERS
+function formatPublicArtworksResponse(response) {
+  let template = $('#public-artworks-template').html();
+  let templateScript = Handlebars.compile(template);
+  return templateScript(response);
+}
+
+function formatOwnerArtworksResponse(response) {
+  let template = $('#owner-artworks-template').html();
+  let templateScript = Handlebars.compile(template);
+  return templateScript(response);
+}
+
+function formatCommerceResponse(response) {
+  let template = $('#commerce-template').html();
+  let templateScript = Handlebars.compile(template);
+  return templateScript(response);
+}
+
 // DISPLAYING OF THINGS
 
 function displayUserInfo(user) {
   $('.tabs').prepend($('<h2>Profile of: '+ user.email +'</h2>'));
 }
 
-function formatResponse(response) {
-  let template = $('#artworks').html();
-  let templateScript = Handlebars.compile(template);
-  return templateScript(response);
+function displayPublicArtworks(artworks) {
+  let html = formatPublicArtworksResponse(artworks);
+  $('#all-art').html(html);
 }
 
-function displayArtworks(artworks) {
-  let html = formatResponse(artworks);
+function displayOwnerArtworks(artworks) {
+  let html = formatOwnerArtworksResponse(artworks);
   $('#all-art').html(html);
 }
 
 function displaySales(artworks) {
-  let html = formatResponse(artworks);
+  let html = formatCommerceResponse(artworks);
   $('#art-sales').html(html);
 }
 
 function displayPurchases(artworks) {
-  let html = formatResponse(artworks);
+  let html = formatCommerceResponse(artworks);
   $('#art-purchases').html(html);
 }
