@@ -14,6 +14,11 @@ function formatCommerceArtworks(artworks) {
   return templateScript(artworks);
 }
 
+function formatShowArtwork(artwork) {
+  let templateScript = Handlebars.templates['show-artwork'];
+  return templateScript(artwork);
+}
+
 // DISPLAYING OF THINGS
 
 function displayUserInfo(user) {
@@ -38,4 +43,9 @@ function displaySales(artworks) {
 function displayPurchases(artworks) {
   let html = formatCommerceArtworks(artworks);
   $('#art-purchases').html(html);
+}
+
+function displayArtwork(artwork) {
+  let html = formatShowArtwork(artwork);
+  $('.main-container').html(html);
 }

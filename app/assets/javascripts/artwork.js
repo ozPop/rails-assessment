@@ -21,19 +21,25 @@ class Artwork {
     this.image_file_name = image_file_name;
     this.artist = artist;
   }
-
-  // formatter instance method
-  renderHTML() {
-    let html = `<h1>${this.title}</h1>`;
-    html += `<img class="img-responsive thumbnail" width="800" alt="${this.title}" src="/system/images/${this.image_file_name}" />`;
-    return html;
-  }
 }
 
 function attachFormListener() {
   $( "form" ).on( "submit", function(e) {
     e.preventDefault();
     createArtwork(this);
+  });
+}
+
+// AJAX CALLS
+
+function getArtwork(url) {
+  $.ajax({
+    url: url,
+    type: 'GET',
+    dataType: 'json',
+    success: function(response){
+      displayArtwork(response.artwork);
+    }
   });
 }
 
@@ -53,20 +59,6 @@ function createArtwork(form) {
       // NOTE: this needs to be refactored to include all info we want
       // from the image, by reactoring the renderHTML() prototype method
     $('.artwork-new').html(html);
-    }
-  });
-}
-
-function getArtwork(url) {
-  $.ajax({
-    url: url,
-    type: 'GET',
-    dataType: 'json',
-    success: function(response){
-      let $target = $('.main-container');
-      let html = new Artwork(response.artwork).renderHTML();
-      $target.html(html);
-      console.log('Response: ', response.artwork);
     }
   });
 }

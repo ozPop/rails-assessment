@@ -1,0 +1,8 @@
+{{#this}}
+  <div id="artwork-{{id}}">
+    <h2>Title: {{title}}</h2>
+    <p>Description: {{description}}</p>
+    <p>Artist: <a href="/users/{{artist.id}}">{{artist.email}}</a></p>
+    <img src="/system/images/{{image_file_name}}" class="img-responsive thumbnail" alt="{{title}}">
+  </div>
+{{/this}}
