@@ -28,7 +28,7 @@ class ArtworksController < ApplicationController
     if @artwork.save
       # toggle seller to true
       current_user.update(seller: true) unless current_user.seller
-      redirect_to user_artworks_path(current_user), notice: 'Successfuly added artwork'
+      render json: @artwork, adapter: :json
     else
       render 'new'
     end
