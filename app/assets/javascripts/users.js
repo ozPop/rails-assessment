@@ -22,6 +22,9 @@ function attachListeners(){
     e.preventDefault();
     getPurchases();
   });
+  $('.main-container').on('click', '.listing-controls .btn', function(){
+    modifyArtwork($(this));
+  });
 }
 
 class User {
@@ -40,6 +43,19 @@ function createArtworks(artworks){
     return artworks.map(artwork => new Artwork(artwork));
   } else {
     return [];
+  }
+}
+
+function modifyArtwork(element) {
+  // NOTE: This is very brittle targeting! Consider refactoring.
+  let imgUrl = element.parent().parent().children(':first-child').attr('href');
+  let className = element.attr('class').split(' ').pop();
+  if (className === 'btn-default') {
+    let url = imgUrl + "/edit";
+    $(location).attr('href', url);
+  }
+  if ( className === 'btn-danger') {
+    destroyArtwork(imgUrl);
   }
 }
 
@@ -98,6 +114,16 @@ function getPurchases() {
         artworks = createArtworks(response.artworks);
       }
       displayPurchases(artworks);
+    }
+  });
+}
+
+function destroyArtwork(url) {
+  $.ajax({
+    url: url,
+    method: 'DELETE',
+    success: function(response) {
+      displayOwnerArtworks(response.user.artworks);
     }
   });
 }
