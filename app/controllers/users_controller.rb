@@ -10,14 +10,11 @@ class UsersController < ApplicationController
     # flag user as owner for displaying of artwork-controls
     @user.owner = true if @user == current_user
     respond_to do |format|
-    # handle based on type of request
-    format.html {
-      # implicit rendering
-    }
-    format.json { 
-      # render user, along with sales and purchases
-      render json: @user, adapter: :json
-     }
+      format.html {} # implicit rendering
+      format.json do
+        # render user, along with sales and purchases
+        render json: @user, adapter: :json
+      end
     end
   end
 

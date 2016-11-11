@@ -43,12 +43,10 @@ class ArtworksController < ApplicationController
         redirect_to user_artworks_path(artist), alert: "Artwork not found"
       else
         respond_to do |format|
-          format.html {
-            # implicit rendering
-          }
-          format.json { 
+          format.html {} # implicit rendering
+          format.json do 
             render json: @artwork, adapter: :json
-          }
+          end
         end
       end
     # NOTE: probably don't need this else since we are always accessing through nested route
@@ -84,16 +82,16 @@ class ArtworksController < ApplicationController
 
   def destroy
     @artwork.destroy
-    # toggle seller to false
+    # toggle seller to false if user has no artworks
     current_user.update(seller: false) unless current_user.artworks.any?
     respond_to do |format|
-      format.html {  
+      format.html do
         redirect_to user_path(current_user), notice: 'Artwork deleted.'
-      }
-      format.json {
+      end
+      format.json do
         current_user.owner = true
         render json: current_user, adapter: :json
-      }
+      end
     end
   end
 

@@ -122,6 +122,7 @@ function destroyArtwork(url) {
   $.ajax({
     url: url,
     method: 'DELETE',
+    dataType: 'json',
     success: function(response) {
       displayOwnerArtworks(response.user.artworks);
     }
