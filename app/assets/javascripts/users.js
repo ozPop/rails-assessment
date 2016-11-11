@@ -129,22 +129,22 @@ function destroyArtwork(url) {
 }
 
 // HANDLEBARS TEMPLATE COMPILERS
-function formatPublicArtworksResponse(response) {
+function formatPublicArtworks(artworks) {
   let template = $('#public-artworks-template').html();
   let templateScript = Handlebars.compile(template);
-  return templateScript(response);
+  return templateScript(artworks);
 }
 
-function formatOwnerArtworksResponse(response) {
+function formatOwnerArtworks(artworks) {
   let template = $('#owner-artworks-template').html();
   let templateScript = Handlebars.compile(template);
-  return templateScript(response);
+  return templateScript(artworks);
 }
 
-function formatCommerceResponse(response) {
+function formatCommerceArtworks(artworks) {
   let template = $('#commerce-template').html();
   let templateScript = Handlebars.compile(template);
-  return templateScript(response);
+  return templateScript(artworks);
 }
 
 // DISPLAYING OF THINGS
@@ -154,21 +154,21 @@ function displayUserInfo(user) {
 }
 
 function displayPublicArtworks(artworks) {
-  let html = formatPublicArtworksResponse(artworks);
+  let html = formatPublicArtworks(artworks);
   $('#all-art').html(html);
 }
 
 function displayOwnerArtworks(artworks) {
-  let html = formatOwnerArtworksResponse(artworks);
+  let html = formatOwnerArtworks(artworks);
   $('#all-art').html(html);
 }
 
 function displaySales(artworks) {
-  let html = formatCommerceResponse(artworks);
+  let html = formatCommerceArtworks(artworks);
   $('#art-sales').html(html);
 }
 
 function displayPurchases(artworks) {
-  let html = formatCommerceResponse(artworks);
+  let html = formatCommerceArtworks(artworks);
   $('#art-purchases').html(html);
 }
