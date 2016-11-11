@@ -16,12 +16,3 @@
 //= require bootstrap
 //= require handlebars
 //= require_tree .
-
-// Add site-wide listener for clicks on thumbnails
-$(document).on('turbolinks:load', function() {
-  $('body').on('click', '.img-responsive', function(e){
-    e.preventDefault();
-    let url = $(this).parent().attr('href');
-    getArtwork(url);
-  });
-});
