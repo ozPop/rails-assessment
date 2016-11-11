@@ -86,7 +86,15 @@ class ArtworksController < ApplicationController
     @artwork.destroy
     # toggle seller to false
     current_user.update(seller: false) unless current_user.artworks.any?
-    redirect_to user_path(current_user), notice: 'Artwork deleted.'
+    respond_to do |format|
+      format.html {  
+        redirect_to user_path(current_user), notice: 'Artwork deleted.'
+      }
+      format.json {
+        current_user.owner = true
+        render json: current_user, adapter: :json
+      }
+    end
   end
 
   private
