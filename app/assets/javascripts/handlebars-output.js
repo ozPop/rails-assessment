@@ -1,19 +1,16 @@
 // HANDLEBARS TEMPLATE COMPILERS
 function formatPublicArtworks(artworks) {
-  let template = $('#public-artworks-template').html();
-  let templateScript = Handlebars.compile(template);
+  let templateScript = Handlebars.templates['public-artworks'];
   return templateScript(artworks);
 }
 
 function formatOwnerArtworks(artworks) {
-  let template = $('#owner-artworks-template').html();
-  let templateScript = Handlebars.compile(template);
+  let templateScript = Handlebars.templates['owner-artworks'];
   return templateScript(artworks);
 }
 
 function formatCommerceArtworks(artworks) {
-  let template = $('#commerce-template').html();
-  let templateScript = Handlebars.compile(template);
+  let templateScript = Handlebars.templates['commerce-artworks'];
   return templateScript(artworks);
 }
 
