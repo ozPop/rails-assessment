@@ -22,7 +22,7 @@ function attachListeners(){
     e.preventDefault();
     getPurchases();
   });
-  $('.main-container').on('click', '.listing-controls .btn', function(){
+  $('.main-container').on('click', '.artwork-controls .btn', function(){
     modifyArtwork($(this));
   });
 }
