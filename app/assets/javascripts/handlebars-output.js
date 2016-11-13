@@ -22,7 +22,7 @@ function formatShowArtwork(artwork) {
 // DISPLAYING OF THINGS
 
 function displayUserInfo(user) {
-  $('.owner-info').html("<h2>Profile of: " + user.email + "</h2>");
+  $('.owner-info').html(user.renderHTML());
 }
 
 function displayPublicArtworks(artworks) {

@@ -1,26 +1,27 @@
 $(document).on('turbolinks:load', function() {
+  let userId = $('.main-container').attr('id');
   // page detection using class name of body
   if($('.users.show').length !== 0) {
-    getUser();
+    getUser(userId);
   }
   // attach event listener to #my-sales and #my-purchases
-  attachListeners();
+  attachListeners(userId);
 });
 
-function attachListeners(){
+function attachListeners(userId){
   $('#all-artworks').on('click', function(e){
     e.preventDefault();
-    getUser();
+    getUser(userId);
   });
 
   $('#my-sales').on('click', function(e){
     e.preventDefault();
-    getSales();
+    getSales(userId);
   });
 
   $('#my-purchases').on('click', function(e){
     e.preventDefault();
-    getPurchases();
+    getPurchases(userId);
   });
   $('.main-container').on('click', '.artwork-controls .btn', function(){
     modifyArtwork($(this));
@@ -34,6 +35,10 @@ class User {
     this.seller = userObject.seller;
     this.owner = userObject.owner;
     this.artworks = userObject.artworks;
+  }
+
+  renderHTML() {
+    return "<h2>Profile of: " + this.email + "</h2>";
   }
 }
 
@@ -61,9 +66,7 @@ function modifyArtwork(element) {
 
 // AJAX CALLS
 
-function getUser() {
-  let userId = $('.main-container').attr('id');
-
+function getUser(userId) {
   $.ajax({
     url: '/users/' + userId,
     type: 'get',
@@ -84,9 +87,7 @@ function getUser() {
   });
 }
 
-function getSales() {
-  let userId = $('.main-container').attr('id');
-
+function getSales(userId) {
   $.ajax({
     url: '/users/' + userId + '/sales',
     type: 'get',
@@ -101,9 +102,7 @@ function getSales() {
   });
 }
 
-function getPurchases() {
-  let userId = $('.main-container').attr('id');
-
+function getPurchases(userId) {
   $.ajax({
     url: '/users/' + userId + '/purchases',
     type: 'get',
