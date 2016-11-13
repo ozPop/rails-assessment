@@ -53,12 +53,8 @@ function createArtwork(form) {
     processData: false,
     contentType: false,
     success: function(response){
-      console.log(response);
       let artwork = new Artwork(response.artwork);
-      let html = artwork.renderHTML();
-      // NOTE: this needs to be refactored to include all info we want
-      // from the image, by reactoring the renderHTML() prototype method
-    $('.artwork-new').html(html);
+      displayArtwork(artwork);
     }
   });
 }
