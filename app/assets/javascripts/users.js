@@ -23,6 +23,7 @@ function attachListeners(userId){
     e.preventDefault();
     getPurchases(userId);
   });
+
   $('.main-container').on('click', '.artwork-controls .btn', function(){
     modifyArtwork($(this));
   });
@@ -43,11 +44,11 @@ class User {
 }
 
 // return an array of JS objects
-function createArtworks(artworks){
+function createArtworks(artworks) {
   if (artworks.length !== 0) {
     return artworks.map(artwork => new Artwork(artwork));
   } else {
-    return [];
+    return artworks;
   }
 }
 
@@ -76,9 +77,9 @@ function getUser(userId) {
       let artworks = createArtworks(user.artworks);
       displayUserInfo(user);
       if (user.owner) {
-        displayOwnerArtworks(artworks);
+        displayArtworks('owner-artworks', artworks);
       } else {
-        displayPublicArtworks(artworks);
+        displayArtworks('public-artworks',artworks);
       }
     }
   });
@@ -94,7 +95,7 @@ function getSales(userId) {
       if (response.artworks) {
         artworks = createArtworks(response.artworks);
       }
-      displaySales(artworks);
+      displaySales('commerce-artworks', artworks);
     }
   });
 }
@@ -109,7 +110,8 @@ function getPurchases(userId) {
       if (response.artworks) {
         artworks = createArtworks(response.artworks);
       }
-      displayPurchases(artworks);
+      artworks = createArtworks(response.artworks);
+      displayPurchases('commerce-artworks', artworks);
     }
   });
 }
@@ -120,7 +122,7 @@ function destroyArtwork(url) {
     method: 'DELETE',
     dataType: 'json',
     success: function(response) {
-      displayOwnerArtworks(response.user.artworks);
+      displayArtworks('owner-artworks', response.user.artworks);
     }
   });
 }

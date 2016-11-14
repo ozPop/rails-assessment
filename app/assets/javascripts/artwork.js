@@ -38,7 +38,7 @@ function getArtwork(url) {
     type: 'GET',
     dataType: 'json',
     success: function(response){
-      displayArtwork(response.artwork);
+      displayArtwork('show-artwork', response.artwork);
     }
   });
 }
@@ -54,7 +54,7 @@ function createArtwork(form) {
     contentType: false,
     success: function(response){
       let artwork = new Artwork(response.artwork);
-      displayArtwork(artwork);
+      displayArtwork('show-artwork', artwork);
     }
   });
 }
