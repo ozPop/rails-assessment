@@ -43,7 +43,9 @@ class ArtworksController < ApplicationController
         redirect_to user_artworks_path(artist), alert: "Artwork not found"
       else
         respond_to do |format|
-          format.html {} # implicit rendering
+          format.html {
+            render 'show'
+          }
           format.json do 
             render json: @artwork, adapter: :json
           end
