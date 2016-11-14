@@ -33,4 +33,12 @@ class User < ApplicationRecord
     save
   end
 
+  def sold_artworks
+    { 'artworks' => sales.map(&:artwork).compact }
+  end
+
+  def bought_artworks
+    { 'artworks' => purchases.map(&:artwork).compact }
+  end
+
 end

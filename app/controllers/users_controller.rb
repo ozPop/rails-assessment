@@ -20,11 +20,11 @@ class UsersController < ApplicationController
 
   def sales
     artist = User.find_by(id: params[:id])
-    render json: artist.sales.map(&:artwork), adapter: :json
+    render json: artist.sold_artworks
   end
 
   def purchases
-    artist = User.find_by(id: params[:id])
-    render json: artist.purchases.map(&:artwork), adapter: :json
+    user = User.find_by(id: params[:id])
+    render json: user.bought_artworks
   end
 end

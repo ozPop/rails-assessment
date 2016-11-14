@@ -91,10 +91,7 @@ function getSales(userId) {
     type: 'get',
     dataType: 'json',
     success: function(response){
-      let artworks = [];
-      if (response.artworks) {
-        artworks = createArtworks(response.artworks);
-      }
+      artworks = createArtworks(response.artworks);
       displaySales('commerce-artworks', artworks);
     }
   });
@@ -106,10 +103,6 @@ function getPurchases(userId) {
     type: 'get',
     dataType: 'json',
     success: function(response){
-      let artworks = [];
-      if (response.artworks) {
-        artworks = createArtworks(response.artworks);
-      }
       artworks = createArtworks(response.artworks);
       displayPurchases('commerce-artworks', artworks);
     }
