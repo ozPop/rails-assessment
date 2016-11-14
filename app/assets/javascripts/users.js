@@ -71,17 +71,14 @@ function getUser(userId) {
     url: '/users/' + userId,
     type: 'get',
     dataType: 'json',
-    success: function(response){
+    success: function(response) {
       let user = new User(response.user);
-      let artworks = [];
-      if (user.artworks) {
-        artworks = createArtworks(user.artworks);
-      }
+      let artworks = createArtworks(user.artworks);
       displayUserInfo(user);
       if (user.owner) {
-        displayOwnerArtworks(user.artworks);
+        displayOwnerArtworks(artworks);
       } else {
-        displayPublicArtworks(user.artworks);
+        displayPublicArtworks(artworks);
       }
     }
   });
